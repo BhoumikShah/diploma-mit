@@ -1,0 +1,46 @@
+iii) Compare Linear search vs Binary search:
+
+Search Space:
+
+Linear Search: Works on both sorted and unsorted arrays.
+Binary Search: Requires a sorted array.
+Time Complexity:
+
+Linear Search: O(n) in the worst-case scenario, where n is the size of the array.
+Binary Search: O(log n) in the worst-case scenario for a sorted array.
+Algorithm Complexity:
+
+Linear Search: Simple and easy to implement.
+Binary Search: More complex due to the need for a sorted array and the calculation of midpoints.
+Efficiency:
+
+Linear Search: Efficient for small datasets or unsorted arrays.
+Binary Search: More efficient for large datasets or sorted arrays.
+Number of Comparisons:
+
+Linear Search: Requires, on average, n/2 comparisons.
+Binary Search: Requires log2(n) comparisons.
+Memory Usage:
+
+Linear Search: Minimal additional memory requirements.
+Binary Search: Requires recursion or an additional stack space for iterative implementations.
+iv) State Limitations of Linear search in terms of Time Complexity:
+
+Linear Growth:
+
+Linear search has a time complexity of O(n), where the time taken grows linearly with the size of the dataset.
+Inefficiency for Large Datasets:
+
+As the size of the dataset increases, linear search becomes inefficient for searching, especially in comparison to algorithms like binary search with better time complexity.
+Sorted Data Requirement:
+
+Linear search does not take advantage of data being sorted. In contrast, algorithms like binary search are more suitable for sorted datasets.
+Not Ideal for Real-Time Systems:
+
+In real-time systems, where quick responses are crucial, linear search may not be the most efficient choice for searching large datasets.
+Impact on Performance:
+
+In scenarios where search time is a critical factor, linear search may impact the overall performance of an application.
+Not Suitable for Big Data:
+
+Linear search becomes impractical for extremely large datasets commonly encountered in big data applications, where more efficient search algorithms are preferred.

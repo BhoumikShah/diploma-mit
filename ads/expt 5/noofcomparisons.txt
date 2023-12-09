@@ -1,0 +1,18 @@
+iii) Number of Comparisons in Bubble Sort:
+In the Bubble Sort algorithm, each pair of adjacent elements is compared and swapped if they are in the wrong order. The process is repeated until the list is sorted. Here's the calculation for the given list: 100, 200, 300, 400, 500.
+
+In the first pass, the largest element is moved to its correct position, so there are 4 comparisons.
+In the second pass, the second-largest element is moved, requiring 3 comparisons.
+In the third pass, the third-largest element is moved, requiring 2 comparisons.
+In the fourth pass, the fourth-largest element is moved, requiring 1 comparison.
+So, the total number of comparisons is 
+4
++
+3
++
+2
++
+1
+=
+10
+4+3+2+1=10.
