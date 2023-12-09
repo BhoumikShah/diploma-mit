@@ -1,0 +1,49 @@
+Exp  1:Write a C++ program to demonstrate the use of class and object.
+a.Write a program to declare class ‘student’ having data members as roll_no and name and class. Accept and display data for one object.
+(Note: Teacher shall execute the program and demonstrate it to explain all basic concepts of OOP)
+b. Write a program to declare class ‘Book’ having data members as book_name, price and no. of pages. Accept this data for 2 objects and display the name of book having greater price.
+c. Write a program to declare class “time”, accept time in HH:MM:SS format, convert it into total seconds and display them.
+Exp. 2 Pointer to object, The 'this' pointer, nested class.
+1.Write a program to declare a class ‘book’ containing data members as book-title, author_name and price.  Accept and display the information for one object using a pointer to that object.                                                                             
+ 2. WAP to declare a class ‘student’ having data members roll_no and percentage. Using ‘this’ pointer invoke member functions to accept and display this data for one object of the class.
+3. Write a  program to demonstrate the use of nested class
+Exp 3  :  Write a C++ program to demonstrate the use of array of objects.
+1. WAP to declare a class ’city’ having data members as name and population. Accept this data for 5 cities and display name of city having highest population
+2. WAP to declare a class ‘Account’ having data members as Account no. and balance .Accept this data for 10 accounts and give interest of 10% where balance is equal or greater than 5000 and display them.
+3. WAP to declare a class ‘Staff’ having data members as name and post. Accept this data for 5 staff and display names of staff who are “HOD”.
+Exp 4 : Write a C++ program to demonstrate passing of object as function argument.
+WAP to create two classes result1 and result 2 which stores the marks of the students . Read the values of marks for both class objects and compute the average of two results.
+WAP to find the greatest number among two numbers from two different classes using the friend function.
+WAP for swapping contents of two variables of same class using friend function
+Exp 5  : Write a C++ program to implement types of constructors.
+Write a program to find the sum of numbers between 1 to n using a constructor where the value of n will be passed to the constructor.
+Write a program to declare a class “student” having data members as name and percentage. Write a constructor to initialize these data members. Accept and display data for one student.
+Define a class ‘College’ members variables as roll_no, name, course. WAP using constructor with default value as “Computer Engineering” for course. Accept this data for two objects of class and display the data
+ Write a program to demonstrate constructor overloading
+ Exp 6  : Write a C++ program to implement Inheritance.
+ Write a program to implement multilevel inheritance. Assume suitable data
+ Write a program to implement multiple. Assume suitable data.
+ Write a program to implement hierarchical inheritance. Assume suitable data
+ Write a program to implement hybrid inheritance. Assume suitable data
+ Write a program to demonstrate virtual base class. Assume suitable data with figures
+ Exp 7  : Write a program to demonstrate the Compile Time Polymorphism (Function Overloading and Operator Overloading -Unary).
+ Write a program using function overloading to calculate the area of a laboratory (which is rectangular in shape) and area of Classroom (which is square in shape).
+Write a program using function overloading to calculate the sum of 5 float values and sum of 10 integer values.
+ Write a program to implement Unary - operator when used with the object so that the numeric data member of the class is negated.
+ Write a program to implement the Unary ++ operator (for pre increment and post Increment) when used with the object so that the numeric data member of the class is Incremented.
+ Exp 8  : Write a program to demonstrate the Compile Time and Run time Polymorphism (Operator overloading Binary)
+ Write a program to overload the ‘+’ operator so that two strings can be concatenated. Eg:”xyz”+”pqr” then output will “xyzpqr”.
+ Write a program to create a base class ILogin having data members name and password. Declare accept() function virtual. Derive EmailLogin and MmebershipLogin classes from ILogin. Display Email login details and membership login details of the employee
+Exp 9  : Write a program to perform various operations on file. 
+Write a program to copy the contents of one file into another. Open "First.txt” in  read (ios::in) mode and "Second.txt" file in  write (ios::out) mode. Copy the contents of "First.txt" into "Second.txt". Assume "First.txt" is already created.
+Write a C++ Program to Count Digits and Spaces using File Handling.
+Exp 10 : Write a program to implement a Function template and Class template.
+Write a C++ Program to find Sum of Array elements using function template. (eg. Pass Integer, Float and Double array of 10 elements)
+Write a C++ Program of Square Function using template specialization  
+calculate the square of integer no. and a string. (Square of string is nothing but    Concatenation of a string with itself).
+Exp 11: Write a C++ program to implement generic vectors. Include following member functions: -To create the vector.
+To modify the value of a given element
+To multiply by a scalar value.
+To display the vector in the form (10,20,30,…)
+Exp 12:   Write C++ program using STL 
+Implement stack

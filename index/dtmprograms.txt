@@ -1,0 +1,13 @@
+Experiment No. 6: Write and execute an assembly language program to add/subtract two 8 bit numbers.
+Experiment No. 7: Write and execute an assembly language program to multiply/divide two 8 bit
+signed/unsigned numbers.
+Experiment No. 8: Write and execute an assembly language program to find the smallest and
+largest number from an array of 8 bit n numbers
+Experiment No. 9: Write and execute an assembly language program to arrange numbers in
+ascending and descending order in an array of 8 bit n numbers.
+Experiment No. 10: Write and execute an assembly language program to count ODD and EVEN
+numbers in an array of 8 bit n numbers.
+Experiment No.11: Write and execute an assembly language program to count POSITIVE and
+NEGATIVE numbers in an array of 8 bit n numbers.
+Experiment no. 12: Write and execute an assembly language program to perform string operations
+- Find length of string, To arrange string in reverse order, To compare two strings.

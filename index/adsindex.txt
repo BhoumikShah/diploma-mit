@@ -1,0 +1,90 @@
+1.Write a program to implement arrays operations:
+i) Find an average of 10 numbers using an array.
+ii) Display the following pattern.
+*
+##
+***
+####
+iii) Find First Repeating Element
+iv) Find the greatest and the smallest element in the array
+v) Squaring the odd positioned elements.
+2.Write ‘C’ program to Search Particular Data from given array using:
+i) Search data using Linear search: Consider the following list to perform Linear
+search (56, 36, 89, 57, 01, 00, 67, 59) 1. Search the item 01 from the above list
+and write the item is found or not with procedure. 2. Search the item 55 from
+the above list and write the item is found or not with procedure.
+ii) Search data using Binary search.
+iii) Compare Linear search vs Binary search.
+iv) State Limitations of Linear search in terms of Time Complexity.
+3.Write ‘C’ program to calculate time and space complexity:
+i) Calculate time complexity when there are many if, else statements inside
+loops
+ii) What is the time complexity of fun()?
+int fun(int n)
+{
+int count = 0;
+for (int i = 0; i < n; i++)
+for (int j = i; j > 0; j--)
+count = count + 1;
+return count;
+}
+iii) What is the time complexity of following function fun()
+void fun(int n)
+
+Dean
+Faculty of Engineering and Technology
+Faculty of Engineering and Technology
+Dean
+
+{
+int i, j;
+for (i=1; i<=n; i++)
+for (j=1; j<=log(i); j++)
+printf("Welcome ......");
+}
+4.Write ‘C’ program to perform Mathematics Based Problem Solving Skills
+i) Find the absolute value of the integer.
+ii) Find factorial of positive integer N.
+iii) Convert Celsius To Fahrenheit
+iv) Given an integer N. Find the number of digits that appear in its factorial
+5.Write ‘C’ program to sort data from given array using – Bubble sort & Selection Sort:
+i) Sort elements in ascending order using Bubble Sort.
+ii) Sort elements in descending order using Selection Sort.
+iii) Find the number of comparisons required in bubble sort method of the
+following list having 5 numbers: 100, 200, 300, 400, 500
+iv) Sort the given array in ascending order using Selection sort method and show
+diagrammatic representation of every iteration of for loop: 500, -20, 30, 14, 50
+6.Write ‘C’ program to sort data from given array using – Insertion sort & Radix Sort:
+
+i) Sort element in ascending order using Insertion Sort
+ii) Sort element in ascending order using Radix Sort
+iii) What is the output of insertion sort after the 2nd iteration given the following
+sequence of numbers: 7, 3, 5, 1, 9, 8, 4, 6
+7.Write a ‘C’ program to perform .
+
+i) Primitive operations on Stack-PUSH, POP, Is Empty, Is full.
+ii) Stack size-8 for push(10), push(20), pop, push(25), push(50), push(70), pop,
+pop, push(100), pop and draw final output.
+8.Write a ‘C’ program to implement the concept of recursion.
+
+iii) Reverse a stack using recursion
+iv) Solve Tower of Hanoi puzzle, show diagrammatic representation of every step
+9.Write ‘C’ program for expression conversion using stack:
+i) Convert Infix to Postfix or Prefix Expression
+ii) Convert infix expression into prefix using Stack: Infix Expression:
+A+ (B*C-(D/E^F)*G)*H
+10.Write ‘C’ program to evaluate expression using stack
+
+i) Write a C program to evaluate Infix or Prefix Expression.
+ii) Evaluate prefix expression using Stack: prefix Expression:
+
++ - * + 1 2 / 4 2 1 $ 4 2
+11.Write ‘C’ program to perform primitive operation on Linear Queue.
+
+i) Perform primitive operation on Linear Queue-Insert, Delete, Display
+ii) Perform following operations on Linear queue in array size 10 with this
+operations Insert(10), Insert(50), Delete, Insert(100), Insert(20), Delete,
+Insert(25), Insert(200),
+12.Write a ‘C’ program to perform primitive operations on Circular Queue.
+i) Primitive operation on Circular Queue-Insert, Delete, Display
+ii) What are the advantages of circular queue, show diagrammatic representation.

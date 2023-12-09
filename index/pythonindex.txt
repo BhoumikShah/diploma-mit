@@ -1,0 +1,121 @@
+Experiment No.1.
+Title: Write a Python program to implement the following
+1.Install and configure python IDE.
+2.Write a Python program to display name using interactive and script mode
+3.Write a python program to implement arithmetic ,logical, ,bitwise and identity operators.
+4.Write a program to swap two values. Accept input from user.
+Experiment No.2
+Title :Write a Python Program using conditional and looping statements
+1.Write a program that takes marks of 5 subjects and display grade .Accept input from user.
+2.Write a program to check largest among three numbers
+3.Write a python program to reverse the given number
+4.Write a python program to find even numbers from 1 to 10.
+5.Python program to perform Addition Subtraction Multiplication and Division of two numbers. Using if else and accept user input.
+6.Program to find the best of two test average marks out of three test’s marks accepted from the user.
+7.Print patterns of (*) using loop.
+*
+**
+***
+****
+*****
+Experiment No.3 Write Python program to perform following operations on
+Lists: Create list, Access list, Update list (Add item,
+Remove item), Delete list
+1.Write a Python program to sum all the items in a list.
+2. Write a Python program to multiplies all the items in a list.
+3. Write a Python program to get the largest number from a list.
+4. Write a Python program to get the smallest number from a list.
+5. Write a Python program to reverse a list.
+6. Write a Python program to find common items from two lists.
+7. Write a Python program to select the even items of a list.
+Experiment No.4 Write a python program to perform operations on tuple.
+1.Create tuple,Access Tuple,Update tuple,delete tuple
+2.Write apython program to find repeated items in a tuple
+3.Create a tuple and find minimum and maximum of tupple
+4.Print the number in words for Example: 1234 => One Two Three Four using tuple
+Experiment No.5 Write a Python Program to perform operations on sets.
+1.Write a Python program to create a set, add member(s) in a set and remove one
+item from set. 
+2. Write a Python program to create a union of sets
+3.Write a Python program to create an intersection of sets.
+ 4.Write a Python program to create a symmetric difference.
+5. Write a Python program to find maximum and the minimum value in a set. 
+6. Write a Python program to find the length of a set.  
+7.Write a Python program to check if a given value is present in a set or not.
+8.Write a Python program to remove an item from a set if it is present in the set.
+9.Write a Python program to check if a given set is a superset of itself and a superset of another given set.
+Experiment No.6  Write Python program to perform following operations on dictionaries: Create Dictionary, Access Dictionary elements, Update Dictionary, Delete Dictionary, Looping through Dictionary
+Write a Python script to sort (ascending and descending) a dictionary by value.
+2. Write a Python script to concatenate following dictionaries to create a new one.
+a. Sample Dictionary:
+b. dic1 = {1:10, 2:20}
+c. dic2 = {3:30, 4:40}
+d. dic3 = {5:50,6:60}
+3. Write a Python program to combine two dictionary adding values for common
+keys.
+a. d1 = {'a': 100, 'b': 200, 'c':300}
+b. d2 = {'a': 300, 'b': 200, 'd':400}
+4. Write a Python program to print all unique values in a dictionary.
+a. Sample Data: [{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"},
+{"VII":"S005"}, {"V":"S009"}, {"VIII":"S007"}]
+5. Write a Python program to find the highest 3 values in a dictionary.
+
+What is the output of following Programs
+1. What is the output of the following program?
+dictionary = {'MSBTE' : 'Maharashtra State Board of Technical Education',
+'CO' : 'Computer Engineering',
+'SEM' : 'Sixth'
+}
+del dictionary['CO'];
+for key, values in dictionary.items():
+print(key)
+dictionary.clear();
+for key, values in dictionary.items():
+print(key)
+del dictionary;
+for key, values in dictionary.items():
+print(key)
+
+2.What is the output of the following program?dictionary1 = {'Google' : 1,
+'Facebook' : 2,
+'Microsoft' : 3
+}
+dictionary2 = {'GFG' : 1,
+'Microsoft' : 2,
+'Youtube' : 3
+}
+dictionary1.update(dictionary2);
+for key, values in dictionary1.items():
+print(key, values)
+
+3. What is the output of the following program?
+temp = dict()
+temp['key1'] = {'key1' : 44, 'key2' : 566}
+temp['key2'] = [1, 2, 3, 4]
+for (key, values) in temp.items():
+print(values, end = "")
+Experiment No.7 Write Python program to demonstrate the use of user defined functions,modules,and packages. Create user defined functions ,modules and import them into packages
+1.Find area and circumference of a circle by using function. Accept input from user.
+2.Perform a simple calculator using function, modules and packages.
+3.Convert rupees to dollars and vice-versa by using function. Accept input from user.
+4.Find the factorial using recursive function. Accept input from user.
+Experiment No.8 Demonstrate the type of plots using matplotlib.
+Implement all types of plots using matplotlib.
+Experiment No.9 Demonstrate the use of SciPy library
+Demonstrate the use of following SciPy Modules:
+1.constant
+2.Optimisers
+3.sparse data
+4.Graphs
+5.Spatial data
+Experiment No.10 Write a python program to demonstrate the use of Inheritance
+1.Create a Bus child class that inherits from the Vehicle class. The default fare charge of any vehicle is seating capacity * 100. If Vehicle is Bus instance, we need to add an extra 10% on full fare as a maintenance charge. So total fare for bus instance will become the final amount = total fare + 10% of the total fare.
+2.Create a child class Bus that will inherit all of the variables and methods of the Vehicle class.
+Experiment No.11 Demonstrate the use of exception handling in Python
+1.Write a Python program to handle a ZeroDivisionError exception when dividing a number by zero.
+2.Write a Python program that prompts the user to input an integer and raises a ValueError exception if the input is not a valid integer.
+3.Write a Python program that prompts the user to input two numbers and raises a TypeError exception if the inputs are not numerical.
+Experiment No.12  Perform various operations on files
+1.Write a Python program to read an entire text file.
+2.Write a Python program to read first n lines of a file.
+3.Write a Python program to append text to a file and display the text.
