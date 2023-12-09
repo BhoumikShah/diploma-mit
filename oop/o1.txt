@@ -1,0 +1,128 @@
+#include <iostream>
+
+class Student {
+public:
+    int roll_no;
+    char name[100];
+    char class_name[50];
+
+    void acceptStudentData() {
+        std::cout << "Enter Roll No: ";
+        std::cin >> roll_no;
+        std::cout << "Enter Name: ";
+        std::cin.ignore(); // Clear the newline character from the input buffer
+        std::cin.getline(name, sizeof(name));
+        std::cout << "Enter Class: ";
+        std::cin.getline(class_name, sizeof(class_name));
+    }
+
+    void displayStudentData() {
+        std::cout << "\nStudent Information:" << std::endl;
+        std::cout << "Roll No: " << roll_no << std::endl;
+        std::cout << "Name: " << name << std::endl;
+        std::cout << "Class: " << class_name << std::endl;
+    }
+};
+
+int main() {
+    Student student1;
+
+    // Accept data for one student object
+    student1.acceptStudentData();
+
+    // Display the student information
+    student1.displayStudentData();
+
+    return 0;
+}
+
+#include <iostream>
+
+class Book {
+public:
+    char book_name[100];
+    double price;
+    int num_pages;
+
+    // Method to accept book data
+    void acceptBookData() {
+        std::cout << "Enter Book Name: ";
+        std::cin.ignore(); // Clear the newline character from the input buffer
+        std::cin.getline(book_name, sizeof(book_name));
+        std::cout << "Enter Price: ";
+        std::cin >> price;
+        std::cout << "Enter Number of Pages: ";
+        std::cin >> num_pages;
+    }
+};
+
+int main() {
+    Book book1, book2;
+
+    std::cout << "Enter data for Book 1:" << std::endl;
+    book1.acceptBookData();
+
+    std::cout << "\nEnter data for Book 2:" << std::endl;
+    book2.acceptBookData();
+
+    // Compare the prices and display the book with greater price
+    if (book1.price > book2.price) {
+        std::cout << "\nBook with greater price: " << book1.book_name << std::endl;
+    } else if (book2.price > book1.price) {
+        std::cout << "\nBook with greater price: " << book2.book_name << std::endl;
+    } else {
+        std::cout << "\nBoth books have the same price." << std::endl;
+    }
+
+    return 0;
+}
+#include <iostream>
+
+class Time {
+public:
+    int hours;
+    int minutes;
+    int seconds;
+
+    // Method to accept time input in HH:MM:SS format
+    void acceptTime() {
+        std::cout << "Enter time (HH:MM:SS): ";
+        std::cin >> hours;
+        std::cin.ignore(); // Ignore the ':' character
+        std::cin >> minutes;
+        std::cin.ignore(); // Ignore the ':' character
+        std::cin >> seconds;
+    }
+
+    // Method to convert time to total seconds
+    int convertToSeconds() {
+        return hours * 3600 + minutes * 60 + seconds;
+    }
+
+    // Method to display the total seconds
+    void displayTotalSeconds() {
+        int total_seconds = convertToSeconds();
+        std::cout << "Total seconds: " << total_seconds << " seconds" << std::endl;
+    }
+};
+
+int main() {
+    Time time;
+
+    // Accept time input
+    time.acceptTime();
+
+    // Display the total seconds
+    time.displayTotalSeconds();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+#include <iostream>
+
+class Result1 {
+public:
+    int marks1;
+
+    // Method to accept marks for Result1
+    void acceptMarks1() {
+        std::cout << "Enter Marks for Result1: ";
+        std::cin >> marks1;
+    }
+};
+
+class Result2 {
+public:
+    int marks2;
+
+    // Method to accept marks for Result2
+    void acceptMarks2() {
+        std::cout << "Enter Marks for Result2: ";
+        std::cin >> marks2;
+    }
+};
+
+int main() {
+    Result1 result1; // Create an object of Result1
+    Result2 result2; // Create an object of Result2
+
+    // Accept marks for both class objects
+    result1.acceptMarks1();
+    result2.acceptMarks2();
+
+    // Compute the average of two results
+    double average = (result1.marks1 + result2.marks2) / 2.0;
+
+    // Display the average
+    std::cout << "Average Marks: " << average << std::endl;
+
+    return 0;
+}
+sECOND
+#include <iostream>
+
+using namespace std;
+
+class num2; // Forward declaration for num2 class
+
+class num1 {
+private:
+    int a;
+
+public:
+    void get1(int a) {
+        this->a = a;
+    }
+
+    void disp() {
+        cout << a;
+    }
+
+    friend void comp(num1 n1, num2 n2); // Declare comp as a friend function
+} n1;
+
+class num2 {
+private:
+    int b;
+
+public:
+    void get1(int b) {
+        this->b = b;
+    }
+
+    void disp() {
+        cout << b;
+    }
+
+    friend void comp(num1 n1, num2 n2); // Declare comp as a friend function
+} n2;
+
+void comp(num1 n1, num2 n2) {
+    if (n1.a > n2.b) {
+        cout << "The Number 1 is greatest";
+    } else {
+        cout << "The Number 2 is greatest";
+    }
+}
+
+int main() {
+    int a, b;
+    cout << "Enter Number 1: ";
+    cin >> a;
+    cout << "Enter Number 2: ";
+    cin >> b;
+    cout << endl;
+
+    n1.get1(a);
+    n2.get1(b);
+    comp(n1, n2);
+
+    return 0;
+}
+third
+#include <iostream>
+using namespace std;
+
+class Swap {
+    int a;
+    int b;
+
+public:
+    void get1(int a, int b) {
+        this->a = a;
+        this->b = b;
+    }
+
+    friend void swap(Swap &s1); // Corrected the friend function declaration
+} s1;
+
+void swap(Swap &s1) { // Corrected the friend function definition
+    int temp;
+    cout << endl;
+    cout << "Before Swapping: " << s1.a << " " << s1.b;
+    temp = s1.a;
+    s1.a = s1.b;
+    s1.b = temp;
+    cout << endl;
+    cout << "After Swapping: " << s1.a << " " << s1.b;
+}
+
+int main() {
+    int a, b;
+    cout << "Enter Number 1: ";
+    cin >> a;
+    cout << "Enter Number 2: ";
+    cin >> b;
+
+    s1.get1(a, b);
+    swap(s1);
+    return 0;
+}

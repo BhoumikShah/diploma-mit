@@ -1,0 +1,110 @@
+#include <iostream>
+
+class Book {
+public:
+    char bookTitle[100];
+    char authorName[100];
+    double price;
+
+    // Method to accept book information
+    void acceptBookInfo() {
+        std::cout << "Enter Book Title: ";
+        std::cin.ignore(); // Clear the newline character from the input buffer
+        std::cin.getline(bookTitle, sizeof(bookTitle));
+        std::cout << "Enter Author Name: ";
+        std::cin.getline(authorName, sizeof(authorName));
+        std::cout << "Enter Price: ";
+        std::cin >> price;
+    }
+
+    // Method to display book information
+    void displayBookInfo() {
+        std::cout << "\nBook Information:" << std::endl;
+        std::cout << "Book Title: " << bookTitle << std::endl;
+        std::cout << "Author Name: " << authorName << std::endl;
+        std::cout << "Price: " << price << std::endl;
+    }
+};
+
+int main() {
+    Book book;
+
+    // Accept book information
+    book.acceptBookInfo();
+
+    // Display the book information
+    book.displayBookInfo();
+
+    return 0;
+}
+SECOND
+#include <iostream>
+
+class Student {
+private:
+    int roll_no;
+    float percentage;
+
+public:
+    // Member function to accept data using 'this' pointer
+    void acceptData() {
+        std::cout << "Enter Roll No: ";
+        std::cin >> this->roll_no;
+        std::cout << "Enter Percentage: ";
+        std::cin >> this->percentage;
+    }
+
+    // Member function to display data using 'this' pointer
+    void displayData() {
+        std::cout << "\nStudent Information:" << std::endl;
+        std::cout << "Roll No: " << this->roll_no << std::endl;
+        std::cout << "Percentage: " << this->percentage << "%" << std::endl;
+    }
+};
+
+int main() {
+    Student student1;
+
+    // Accept data for one student object
+    student1.acceptData();
+
+    // Display the student information
+    student1.displayData();
+
+    return 0;
+}
+THIRD
+#include <iostream>
+
+class OuterClass {
+public:
+    int outerVar;
+
+    class InnerClass {
+    public:
+        int innerVar;
+
+        InnerClass(int innerValue) : innerVar(innerValue) {}
+
+        void display() {
+            std::cout << "InnerClass: innerVar = " << innerVar << std::endl;
+        }
+    };
+
+    OuterClass(int outerValue) : outerVar(outerValue) {}
+
+    void display() {
+        std::cout << "OuterClass: outerVar = " << outerVar << std::endl;
+    }
+};
+
+int main() {
+    OuterClass outerObj(42);
+    OuterClass::InnerClass innerObj(10);
+
+    outerObj.display();
+    innerObj.display();
+
+    return 0;
+}
+
