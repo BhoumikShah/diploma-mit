@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void insertIntoHashTable(int arr[], int hashSize, int sizeOfArray) {
+    struct Node* hashTable[hashSize];
+    for (int i = 0; i < hashSize; i++) {
+        hashTable[i] = NULL;
+    }
+    
+    for (int i = 0; i < sizeOfArray; i++) {
+        int index = arr[i] % hashSize;
+        if (hashTable[index] == NULL) {
+            hashTable[index] = (struct Node*)malloc(sizeof(struct Node));
+            hashTable[index]->data = arr[i];
+            hashTable[index]->next = NULL;
+        } else {
+            struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+            newNode->data = arr[i];
+            newNode->next = hashTable[index]->next;
+            hashTable[index]->next = newNode;
+        }
+    }
+    
+    // Print hash table
+    for (int i = 0; i < hashSize; i++) {
+        printf("%d -> ", i);
+        struct Node* temp = hashTable[i];
+        while (temp != NULL) {
+            printf("%d -> ", temp->data);
+            temp = temp->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main() {
+    int arr[] = {94, 6, 16, 26, 46, 91};
+    int hashSize = 10;
+    int sizeOfArray = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("Input array: ");
+    for (int i = 0; i < sizeOfArray; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    printf("Output:\n");
+    insertIntoHashTable(arr, hashSize, sizeOfArray);
+
+    return 0;
+}
