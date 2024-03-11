@@ -1,0 +1,168 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (newNode == NULL) {
+        printf("Memory allocation failed.\n");
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    newNode->next = *head;
+    *head = newNode;
+}
+
+void insertAtMiddle(struct Node* prevNode, int data) {
+    if (prevNode == NULL) {
+        printf("Previous node cannot be NULL.\n");
+        return;
+    }
+    struct Node* newNode = createNode(data);
+    newNode->next = prevNode->next;
+    prevNode->next = newNode;
+}
+
+void insertAtEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    struct Node* temp = *head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
+void deleteFirstNode(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is already empty.\n");
+        return;
+    }
+    struct Node* temp = *head;
+    *head = (*head)->next;
+    free(temp);
+}
+
+void deleteAtMiddle(struct Node** head, int position) {
+    if (*head == NULL) {
+        printf("List is already empty.\n");
+        return;
+    }
+    struct Node* temp = *head;
+    if (position == 0) {
+        *head = temp->next;
+        free(temp);
+        return;
+    }
+    for (int i = 0; temp != NULL && i < position - 1; i++) {
+        temp = temp->next;
+    }
+    if (temp == NULL || temp->next == NULL) {
+        printf("Position out of range.\n");
+        return;
+    }
+    struct Node* nextNode = temp->next->next;
+    free(temp->next);
+    temp->next = nextNode;
+}
+
+void deleteAtEnd(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is already empty.\n");
+        return;
+    }
+    if ((*head)->next == NULL) {
+        free(*head);
+        *head = NULL;
+        return;
+    }
+    struct Node* temp = *head;
+    while (temp->next->next != NULL) {
+        temp = temp->next;
+    }
+    free(temp->next);
+    temp->next = NULL;
+}
+
+void printList(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    int choice, data, position;
+    
+    do {
+        printf("\nMenu:\n");
+        printf("1. Insert node at beginning\n");
+        printf("2. Insert node at middle\n");
+        printf("3. Insert node at end\n");
+        printf("4. Delete first node\n");
+        printf("5. Delete node at middle\n");
+        printf("6. Delete node at end\n");
+        printf("7. Print list\n");
+        printf("8. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter data to insert at beginning: ");
+                scanf("%d", &data);
+                insertAtBeginning(&head, data);
+                break;
+            case 2:
+                printf("Enter data to insert: ");
+                scanf("%d", &data);
+                printf("Enter position to insert: ");
+                scanf("%d", &position);
+                insertAtMiddle(head, data);
+                break;
+            case 3:
+                printf("Enter data to insert at end: ");
+                scanf("%d", &data);
+                insertAtEnd(&head, data);
+                break;
+            case 4:
+                deleteFirstNode(&head);
+                break;
+            case 5:
+                printf("Enter position to delete: ");
+                scanf("%d", &position);
+                deleteAtMiddle(&head, position);
+                break;
+            case 6:
+                deleteAtEnd(&head);
+                break;
+            case 7:
+                printf("Current list: ");
+                printList(head);
+                break;
+            case 8:
+                printf("Exiting program.\n");
+                break;
+            default:
+                printf("Invalid choice.\n");
+        }
+    } while (choice != 8);
+
+    return 0;
+}
