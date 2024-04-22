@@ -73,6 +73,38 @@ void reverseList() {
     head = prev;
 }
 
+void deleteNode(int data) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head, *prev = NULL;
+
+    // If head node needs to be deleted
+    if (temp != NULL && temp->data == data) {
+        head = temp->next;
+        free(temp);
+        return;
+    }
+
+    // Find the node to delete
+    while (temp != NULL && temp->data != data) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    // If node not found
+    if (temp == NULL) {
+        printf("Data not found in the list.\n");
+        return;
+    }
+
+    // Delete the node
+    prev->next = temp->next;
+    free(temp);
+}
+
 int main() {
     int choice, data;
     struct Node* head2 = NULL;
@@ -81,9 +113,10 @@ int main() {
         printf("\n1. Create Node\n");
         printf("2. Display List\n");
         printf("3. Concatenate Lists\n");
-        printf("4. Count Nodes\n");
-        printf("5. Reverse List\n");
-        printf("6. Exit\n");
+        printf("4. Delete Node\n");
+        printf("5. Count Nodes\n");
+        printf("6. Reverse List\n");
+        printf("7. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -115,14 +148,19 @@ int main() {
                 head2 = NULL; // Reset second list for future concatenations
                 break;
             case 4:
+                printf("Enter data to delete: ");
+                scanf("%d", &data);
+                                deleteNode(data);
+                break;
+            case 5:
                 int count = countNodes();
                 printf("Number of nodes: %d\n", count);
                 break;
-            case 5:
+            case 6:
                 printf("Reversing list...\n");
                 reverseList();
                 break;
-            case 6:
+            case 7:
                 exit(0);
             default:
                 printf("Invalid choice.\n");
@@ -131,3 +169,5 @@ int main() {
 
     return 0;
 }
+
+                
