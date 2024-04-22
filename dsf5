@@ -1,0 +1,206 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
+
+struct Node* head = NULL;
+
+void createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+
+    if (head == NULL) {
+        newNode->prev = newNode;
+        newNode->next = newNode;
+        head = newNode;
+    } else {
+        struct Node* temp = head->prev;
+        temp->next = newNode;
+        newNode->prev = temp;
+        newNode->next = head;
+        head->prev = newNode;
+    }
+}
+
+void insertAtEnd(int data) {
+    createNode(data);
+}
+
+void insertAtBeginning(int data) {
+    createNode(data);
+    head = head->prev;
+}
+
+void insertAtPosition(int data, int pos) {
+    if (pos < 1) {
+        printf("Invalid position.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    int count = 1;
+
+    if (pos == 1) {
+        insertAtBeginning(data);
+        return;
+    }
+
+    while (temp->next != head && count < pos - 1) {
+        temp = temp->next;
+        count++;
+    }
+
+    if (temp->next == head) {
+        printf("Position exceeds list size.\n");
+        return;
+    }
+
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->prev = temp;
+    newNode->next = temp->next;
+    temp->next->prev = newNode;
+    temp->next = newNode;
+}
+
+void deleteNode(int data) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+
+    do {
+        if (temp->data == data) {
+            if (temp == temp->next) { // Only node in the list
+                head = NULL;
+                free(temp);
+                return;
+            }
+
+            temp->prev->next = temp->next;
+            temp->next->prev = temp->prev;
+            free(temp);
+
+            if (temp == head) {
+                head = head->next;
+            }
+            return;
+        }
+        temp = temp->next;
+    } while (temp != head);
+
+    printf("Data not found in the list.\n");
+}
+
+void traverse() {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    printf("List elements: ");
+
+    do {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+
+    printf("\n");
+}
+
+int countNodes() {
+    int count = 0;
+    struct Node* temp = head;
+
+    if (temp != NULL) {
+        do {
+            count++;
+            temp = temp->next;
+        } while (temp != head);
+    }
+
+    return count;
+}
+
+void reverseList() {
+    if (head == NULL || head->next == head) {
+        return; // Empty list or single node
+    }
+
+    struct Node* temp = head, *current = NULL;
+
+    do {
+        current = temp->next;
+        temp->next = temp->prev;
+        temp->prev = current;
+        temp = current;
+    } while (temp != head);
+
+    head = current; // Update head pointer after reversal
+}
+
+int main() {
+    int choice, data, pos;
+
+    while (1) {
+        printf("\nCircular Doubly Linked List Menu\n");
+        printf("1. Create Node (at end)\n");
+        printf("2. Insert Node (at beginning)\n");
+        printf("3. Insert Node (at any position)\n");
+        printf("4. Delete Node\n");
+        printf("5. Traverse List\n");
+        printf("6. Count Nodes\n");
+        printf("7. Reverse List\n");
+        printf("8. Exit\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter data to insert: ");
+                scanf("%d", &data);
+                createNode(data);
+                break;
+            case 2:
+                printf("Enter data to insert: ");
+                scanf("%d", &data);
+                insertAtBeginning(data);
+                break;
+            case 3:
+                printf("Enter data and position to insert: ");
+                scanf("%d %d", &data, &pos);
+                insertAtPosition(data, pos);
+                break;
+            case 4:
+                printf("Enter data to delete: ");
+                scanf("%d", &data);
+                deleteNode(data);
+                break;
+            case 5:
+                traverse();
+                break;
+            case 6:
+                printf("Number of nodes: %d\n", countNodes());
+                break;
+            case 7:
+                reverseList();
+                printf("List reversed.\n");
+                break;
+            case 8:
+                printf("Exiting...\n");
+                exit(0);
+            default:
+                printf("Invalid choice.\n");
+        }
+    }
+
+    return 0;
+}
