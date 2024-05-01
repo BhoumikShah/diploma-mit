@@ -1,0 +1,22 @@
+public class apple {
+    public int value;
+    // Single contructor
+    public apple() {
+        value = 0;  
+    }
+    // Multiple contructors
+    public apple(int value) {
+        this.value = value;
+    }
+    // value parat yetat
+    public int getValue() {
+        return value;
+    }
+    public static void main(String[] args) {
+        //  objects
+        apple obj1 = new apple();           
+        apple obj2 = new apple(9);    
+        System.out.println("Value of obj1: " + obj1.getValue());  
+        System.out.println("Value of obj2: " + obj2.getValue());  
+    }
+}
