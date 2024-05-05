@@ -201,6 +201,7 @@ int main() {
             case 7:
                 reverseList();
                 printf("List reversed.\n");
+                
                 break;
             case 8:
                 printf("Exiting...\n");
