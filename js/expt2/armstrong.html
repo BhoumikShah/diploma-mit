@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Armstrong Numbers</title>
+</head>
+<body>
+  <p id="armstrongNumbers"></p>
+
+  <script>
+    function isArmstrongNumber(num) {
+      const numStr = num.toString();
+      const len = numStr.length;
+      let sum = 0;
+
+      for (let i = 0; i < len; i++) {
+        sum += Math.pow(parseInt(numStr[i]), len);
+      }
+
+      return sum === num;
+    }
+
+    function findArmstrongNumbers() {
+      const armstrongNumbers = [];
+
+      for (let num = 1; num <= 500; num++) {
+        if (isArmstrongNumber(num)) {
+          armstrongNumbers.push(num);
+        }
+      }
+
+      return armstrongNumbers;
+    }
+
+    const result = findArmstrongNumbers();
+
+    // Display the result in the HTML element
+    const outputElement = document.getElementById("armstrongNumbers");
+    outputElement.textContent = "Armstrong numbers: " + result.join(", ");
+  </script>
+</body>
+</html>

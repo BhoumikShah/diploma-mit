@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tip Calculator</title>
+</head>
+<body>
+  <input type="number" id="billAmount" placeholder="Enter bill amount">
+  <button onclick="calculateTipAndDisplay()">Calculate Tip</button>
+  <p id="tipAmount"></p>
+
+  <script>
+    function calculateTip(billAmount) {
+      return billAmount * 0.2;
+    }
+
+    function calculateTipAndDisplay() {
+      const bill = parseFloat(document.getElementById("billAmount").value);
+      const tip = calculateTip(bill);
+      document.getElementById("tipAmount").textContent = "Tip amount: $" + tip.toFixed(2);
+    }
+  </script>
+</body>
+</html>
