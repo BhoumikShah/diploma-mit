@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript String Manipulation</title>
+</head>
+<body>
+<h2>Remove a character at a specified position:</h2>
+<p id="removeChar"></p>
+<script>
+    function removeCharAt(str, index) {
+      return str.substring(0, index) + str.substring(index + 1);
+    }
+
+    let string = "hello world";
+    let newString = removeCharAt(string, 3);
+    document.getElementById("removeChar").textContent = newString;
+</script>
+
+<h2>Convert first 3 characters to lowercase:</h2>
+<p id="convertFirstThree"></p>
+<script>
+    function convertFirstThreeToLower(str) {
+      if (str.length < 3) {
+        return str.toUpperCase();
+      } else {
+        return str.substring(0, 3).toLowerCase() + str.substring(3);
+      }
+    }
+
+    let string2 = "Hello World";
+    let newString2 = convertFirstThreeToLower(string2);
+    document.getElementById("convertFirstThree").textContent = newString2;
+</script>
+
+<h2>Swap case of letters:</h2>
+<p id="swapCase"></p>
+<script>
+    function swapCase(str) {
+      let newStr = '';
+      for (let i = 0; i < str.length; i++) {
+        let char = str[i];
+        newStr += char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase();
+      }
+      return newStr;
+    }
+
+    let string3 = "HeLlO wOrLd";
+    let newString3 = swapCase(string3);
+    document.getElementById("swapCase").textContent = newString3;
+
+</script>
+
+<h2>Count occurrences of a substring:</h2>
+<p id="countSubstring"></p>
+<script>
+    function countSubstring(str, subStr) {
+      let count = 0;
+      let index = str.indexOf(subStr);
+
+      while (index !== -1) {
+        count++;
+        index = str.indexOf(subStr, index + 1);
+      }
+
+      return count;
+    }
+
+    let string4 = "hello world hello";
+    let substring = "hello";
+    let count = countSubstring(string4, substring);
+    document.getElementById("countSubstring").textContent = count;
+</script>
+</body>
+</html>
