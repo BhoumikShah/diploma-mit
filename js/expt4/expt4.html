@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator (Years, Months, Days)</title>
+</head>
+<body>
+    <form id="ageForm">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+        <button type="button" onclick="calculateAge()">Calculate Age</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function calculateAge() {
+            const dobInput = document.getElementById("dob").value;
+            const dob = new Date(dobInput);
+            const today = new Date();
+
+            // Calculate age in milliseconds
+            let ageInMilliseconds = today - dob;
+
+            // Convert milliseconds to years
+            const yearInMilliseconds = 365.25 * 24 * 60 * 60 * 1000; // Accounting for leap years
+            let years = Math.floor(ageInMilliseconds / yearInMilliseconds);
+            ageInMilliseconds %= yearInMilliseconds;
+
+            // Convert milliseconds to months
+            const monthInMilliseconds = 30.4375 * 24 * 60 * 60 * 1000; // Average month length
+            let months = Math.floor(ageInMilliseconds / monthInMilliseconds);
+            ageInMilliseconds %= monthInMilliseconds;
+
+            // Convert milliseconds to days
+            const dayInMilliseconds = 24 * 60 * 60 * 1000;
+            let days = Math.floor(ageInMilliseconds / dayInMilliseconds);
+            ageInMilliseconds%=dayInMilliseconds;
+            const hoursInMilliseconds = 60 * 60 * 1000;
+            let hours = Math.floor(ageInMilliseconds / hoursInMilliseconds);
+            ageInMilliseconds %=hoursInMilliseconds ;
+            const minInMilliseconds =  60 * 1000;
+            let min = Math.floor(ageInMilliseconds / minInMilliseconds);
+            ageInMilliseconds%=minInMilliseconds;
+            const secInMilliseconds =   1000;
+            let sec = Math.floor(ageInMilliseconds / secInMilliseconds);
+            ageInMilliseconds%=secInMilliseconds;
+
+
+            document.getElementById("result").textContent = `You are ${years} years, ${months} months, ${days} days ,${hours} hours , ${min}minutes old and ${sec}seconds old.`;
+        }
+    </script>
+</body>
+</html>
