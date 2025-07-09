@@ -20,14 +20,23 @@ public:
 };
 
 int main() {
+    const int size = 3;           // Number of circles
+    circle c[size];               // Array of circle objects
     float r;
-    circle c;
-    cout << "Enter radius: ";
-    cin >> r;
 
-    c.getradius(r);
-    cout << "Circumference of circle is: " << c.circumference() << endl;
-    cout << "Area of circle is: " << c.area() << endl;
+    // Input loop
+    for (int i = 0; i < size; i++) {
+        cout << "Enter radius for circle " << i + 1 << ": ";
+        cin >> r;
+        c[i].getradius(r);
+    }
+
+    // Output loop
+    for (int i = 0; i < size; i++) {
+        cout << "\n--- Circle " << i + 1 << " ---" << endl;
+        cout << "Circumference: " << c[i].circumference() << endl;
+        cout << "Area: " << c[i].area() << endl;
+    }
 
     return 0;
 }
