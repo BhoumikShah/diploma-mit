@@ -1,0 +1,204 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.40 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 12j                |
+| db1                |
+| dbms2              |
+| employee           |
+| fumc               |
+| globalgroceries    |
+| hehe               |
+| information_schema |
+| lab                |
+| lab3               |
+| lab4               |
+| mysql              |
+| nhl                |
+| performance_schema |
+| projecct           |
+| university         |
++--------------------+
+16 rows in set (0.03 sec)
+
+mysql> use 12j;
+Database changed
+mysql> create table cust(
+    -> cid int (4) primary key,
+    -> cname varchar(20) not null,
+    -> acctno int(5) unique,
+    -> acc_type varchar(10),^C
+mysql> create table branch_info(
+    -> branch_id int primary key,
+    -> branch_name varchar(10) unique,
+    -> city varchar(20),
+    -> manager varchar(15)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc branch_info;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| branch_id   | int         | NO   | PRI | NULL    |       |
+| branch_name | varchar(10) | YES  | UNI | NULL    |       |
+| city        | varchar(20) | YES  |     | NULL    |       |
+| manager     | varchar(15) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> create table cust(
+    -> cid int (4) primary key,
+    -> cname varchar(20) not null,
+    -> acctno int(5) unique,
+    -> create table branch_info(
+    -> ^C
+mysql> create table cust(
+    -> cid int (4) primary key,
+    -> cname varchar(20) not null,
+    -> acctno int(5) unique,
+    -> acct_type varchar(10),
+    -> branch_id int,
+    -> balance decimal (10,2),
+    -> foreign key (branch_id) references branch_info(branch_id)
+    -> );
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> desc cust;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| cid       | int           | NO   | PRI | NULL    |       |
+| cname     | varchar(20)   | NO   |     | NULL    |       |
+| acctno    | int           | YES  | UNI | NULL    |       |
+| acct_type | varchar(10)   | YES  |     | NULL    |       |
+| branch_id | int           | YES  | MUL | NULL    |       |
+| balance   | decimal(10,2) | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO branch_info (branch_id, branch_name, city, manager) VALUES
+    -> (1, 'BranchA', 'New York', 'John Doe'),
+    -> (2, 'BranchB', 'Los Angeles', 'Jane Smith'),
+    -> (3, 'BranchC', 'Chicago', 'Alice Brown'),
+    -> (4, 'BranchD', 'Houston', 'Bob White'),
+    -> (5, 'BranchE', 'Phoenix', 'Charlie Green'),
+    -> (6, 'BranchF', 'Philadelphia', 'David Blue'),
+    -> (7, 'BranchG', 'San Antonio', 'Eva Black'),
+    -> (8, 'BranchH', 'San Diego', 'Frank Gray'),
+    -> (9, 'BranchI', 'Dallas', 'Grace Red'),
+    -> (10, 'BranchJ', 'San Jose', 'Harry Gold');
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO cust (cid, cname, acctno, acct_type, branch_id, balance) VALUES
+    -> (1, 'Customer1', 10001, 'Saving', 1, 1500.50),
+    -> (2, 'Customer2', 10002, 'Current', 2, 2300.75),
+    -> (3, 'Customer3', 10003, 'Saving', 3, 3200.10),
+    -> (4, 'Customer4', 10004, 'Current', 4, 4100.60),
+    -> (5, 'Customer5', 10005, 'Saving', 5, 5000.25),
+    -> (6, 'Customer6', 10006, 'Current', 6, 6000.40),
+    -> (7, 'Customer7', 10007, 'Saving', 7, 7000.55),
+    -> (8, 'Customer8', 10008, 'Current', 8, 8000.65),
+    -> (9, 'Customer9', 10009, 'Saving', 9, 9000.75),
+    -> (10, 'Customer10', 10010, 'Current', 10, 10000.85);
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT MAX(balance) AS highest_balance
+    -> FROM cust;
++-----------------+
+| highest_balance |
++-----------------+
+|        10000.85 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MIN(balance) AS lowest_balance
+    -> FROM cust;
++----------------+
+| lowest_balance |
++----------------+
+|        1500.50 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM cust
+    -> WHERE acct_type = (SELECT acct_type FROM cust WHERE cid = 1);
++-----+-----------+--------+-----------+-----------+---------+
+| cid | cname     | acctno | acct_type | branch_id | balance |
++-----+-----------+--------+-----------+-----------+---------+
+|   1 | Customer1 |  10001 | Saving    |         1 | 1500.50 |
+|   3 | Customer3 |  10003 | Saving    |         3 | 3200.10 |
+|   5 | Customer5 |  10005 | Saving    |         5 | 5000.25 |
+|   7 | Customer7 |  10007 | Saving    |         7 | 7000.55 |
+|   9 | Customer9 |  10009 | Saving    |         9 | 9000.75 |
++-----+-----------+--------+-----------+-----------+---------+
+5 rows in set (0.02 sec)
+
+mysql> SELECT b.branch_name
+    -> FROM cust c
+    -> JOIN branch_info b ON c.branch_id = b.branch_id
+    -> WHERE c.acctno = 3;
+Empty set (0.00 sec)
+
+mysql> SELECT b.branch_name
+    -> FROM cust c
+    -> JOIN branch_info b ON c.branch_id = b.branch_id
+    -> WHERE c.acctno = 1;
+Empty set (0.00 sec)
+
+mysql> SELECT b.branch_name
+    -> FROM cust c
+    -> JOIN branch_info b ON c.branch_id = b.branch_id
+    -> WHERE c.acctno = 10003;
++-------------+
+| branch_name |
++-------------+
+| BranchC     |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM cust
+    -> WHERE balance >= (SELECT AVG(balance) FROM cust);
++-----+------------+--------+-----------+-----------+----------+
+| cid | cname      | acctno | acct_type | branch_id | balance  |
++-----+------------+--------+-----------+-----------+----------+
+|   6 | Customer6  |  10006 | Current   |         6 |  6000.40 |
+|   7 | Customer7  |  10007 | Saving    |         7 |  7000.55 |
+|   8 | Customer8  |  10008 | Current   |         8 |  8000.65 |
+|   9 | Customer9  |  10009 | Saving    |         9 |  9000.75 |
+|  10 | Customer10 |  10010 | Current   |        10 | 10000.85 |
++-----+------------+--------+-----------+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT c.*
+    -> FROM cust c
+    -> WHERE c.branch_id = (
+    ->     SELECT b.branch_id
+    ->     FROM branch_info b
+    ->     WHERE b.manager = 'John Doe'
+    -> );
++-----+-----------+--------+-----------+-----------+---------+
+| cid | cname     | acctno | acct_type | branch_id | balance |
++-----+-----------+--------+-----------+-----------+---------+
+|   1 | Customer1 |  10001 | Saving    |         1 | 1500.50 |
++-----+-----------+--------+-----------+-----------+---------+
+1 row in set (0.00 sec)
+
+mysql> select
