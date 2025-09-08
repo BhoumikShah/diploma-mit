@@ -1,0 +1,265 @@
+Last login: Mon Sep  8 11:44:28 on ttys000
+vyaas391@VY127-07 ~ %  mysql -uroot -pscet@2025
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 9.2.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database lab4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use lab4;
+Database changed
+mysql> CREATE TABLE Department (
+    ->     dept_id INT PRIMARY KEY,
+    ->     dept_name VARCHAR(100) NOT NULL,
+    ->     manager_startDate DATE
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> CREATE TABLE Department_Location (
+    ->     dept_id INT,
+    ->     location_name VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> CREATE TABLE Project (
+    ->     project_id INT PRIMARY KEY,
+    ->     project_name VARCHAR(100) NOT NULL,
+    ->     project_location VARCHAR(100),
+    ->     dept_id INT,
+    ->     FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> CREATE TABLE Employee (
+    ->     employee_ssn CHAR(9) PRIMARY KEY,
+    ->     first_name VARCHAR(50),
+    ->     middle_initial CHAR(1),
+    ->     last_name VARCHAR(50),
+    ->     birth_date DATE,
+    ->     home_address VARCHAR(150),
+    ->     gender CHAR(1),
+    ->     salary DECIMAL(10, 2),
+    ->     supervisor_ssn CHAR(9),
+    ->     dept_id INT,
+    ->     FOREIGN KEY (supervisor_ssn) REFERENCES Employee(employee_ssn),
+    ->     FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> CREATE TABLE Works_On (
+    ->     employee_ssn CHAR(9),
+    ->     project_id INT,
+    ->     hours_per_week DECIMAL(5, 2),
+    ->     PRIMARY KEY (employee_ssn, project_id),
+    ->     FOREIGN KEY (employee_ssn) REFERENCES Employee(employee_ssn),
+    ->     FOREIGN KEY (project_id) REFERENCES Project(project_id)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> CREATE TABLE Dependent (
+    ->     employee_ssn CHAR(9),
+    ->     dependent_name VARCHAR(50),
+    ->     gender CHAR(1),
+    ->     birth_date DATE,
+    ->     relationship_to_employee VARCHAR(50),
+    ->     PRIMARY KEY (employee_ssn, dependent_name),
+    ->     FOREIGN KEY (employee_ssn) REFERENCES Employee(employee_ssn)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO Department (dept_id, dept_name, manager_startDate)
+    -> VALUES 
+    ->     (1, 'Engineering', '2020-01-01'),
+    ->     (2, 'HR', '2019-06-15'),
+    ->     (5, 'Marketing', '2021-03-10');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Department_Location (dept_id, location_name)
+    -> VALUES
+    ->     (1, 'New York'),
+    ->     (1, 'San Francisco'),
+    ->     (5, 'Chicago');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Project (project_id, project_name, project_location, dept_id) 
+    -> VALUES
+    ->     (101, 'Website Revamp', 'New York', 1),
+    ->     (102, 'Employee Onboarding', 'New York', 2),
+    ->     (103, 'Product Launch', 'Chicago', 5);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Employee (
+    ->     employee_ssn, first_name, middle_initial, last_name, birth_date, 
+    ->     home_address, gender, salary, supervisor_ssn, dept_id
+    -> ) VALUES
+    ->     ('123456789', 'Bhoumik', 'S', 'Shah', '2005-07-17', 'Sinhgad Rd', 'M', 715000.00, NULL, 5),
+    ->     ('987654321', 'John', 'A', 'Smith', '1988-04-12', '123 Main St', 'M', 65000.00, '123456789', 1),
+    ->     ('555443333', 'Jane', 'B', 'Doe', '1990-09-22', '456 Elm St', 'F', 72000.00, '987654321', 1);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Works_On (employee_ssn, project_id, hours_per_week)
+    -> VALUES
+    ->     ('123456789', 103, 40.00),
+    ->     ('987654321', 101, 20.00),
+    ->     ('555443333', 101, 30.00),
+    ->     ('987654321', 102, 10.00);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Dependent (employee_ssn, dependent_name, gender, birth_date, relationship_to_employee)
+    -> VALUES
+    ->     ('123456789', 'Alice', 'F', '2010-05-12', 'Daughter'),
+    ->     ('987654321', 'Bob', 'M', '2012-11-30', 'Son');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT first_name, last_name
+    -> FROM Employee
+    -> WHERE salary > ALL (
+    ->     SELECT salary
+    ->     FROM Employee
+    ->     WHERE dept_id = 5
+    -> );
+Empty set (0.00 sec)
+
+mysql> SELECT first_name, last_name
+    -> FROM Employee
+    -> WHERE salary > ALL (
+    ->     SELECT salary
+    ->     FROM Employee
+    ->     WHERE dept_id = 2
+    -> );
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Bhoumik    | Shah      |
+| Jane       | Doe       |
+| John       | Smith     |
++------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select project_id from project where dept_id in (select dept_id from employee where last_name ='Smith');
++------------+
+| project_id |
++------------+
+|        101 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> INSERT INTO Dependent (employee_ssn, dependent_name, gender, birth_date, relationship_to_employee) VALUES     ('123456789', 'Jane', 'F', '2010-05-12', 'Daughter');
+
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT e.employee_ssn, e.first_name AS employee_first_name, e.gender AS employee_gender,
+    ->        d.dependent_name, d.gender AS dependent_gender
+    -> FROM Employee e
+    -> JOIN Dependent d ON e.employee_ssn = d.employee_ssn
+    -> WHERE e.first_name = d.dependent_name
+    ->   AND e.gender = d.gender;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO Dependent (employee_ssn, dependent_name, gender, birth_date, relationship_to_employee)
+    -> VALUES ('987654321', 'John', 'M', '2010-01-01', 'Son');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT e.employee_ssn, e.first_name AS employee_first_name, e.gender AS employee_gender,
+    ->        d.dependent_name, d.gender AS dependent_gender
+    -> FROM Employee e
+    -> JOIN Dependent d ON e.employee_ssn = d.employee_ssn
+    -> WHERE e.first_name = d.dependent_name
+    ->   AND e.gender = d.gender;
++--------------+---------------------+-----------------+----------------+------------------+
+| employee_ssn | employee_first_name | employee_gender | dependent_name | dependent_gender |
++--------------+---------------------+-----------------+----------------+------------------+
+| 987654321    | John                | M               | John           | M                |
++--------------+---------------------+-----------------+----------------+------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT e.first_name, e.last_name
+    -> FROM Employee e
+    -> WHERE NOT EXISTS (
+    ->     SELECT 1 FROM Dependent d WHERE d.employee_ssn = e.employee_ssn
+    -> );
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Jane       | Doe       |
++------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT employee_ssn, first_name, gender
+    -> FROM Employee
+    -> WHERE (first_name, gender) IN (
+    ->     SELECT dependent_name, gender
+    ->     FROM Dependent
+    -> );
++--------------+------------+--------+
+| employee_ssn | first_name | gender |
++--------------+------------+--------+
+| 555443333    | Jane       | F      |
+| 987654321    | John       | M      |
++--------------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT employee_ssn
+    -> FROM Works_On
+    -> WHERE project_id IN (1, 2, 3);
+Empty set (0.00 sec)
+
+mysql> SELECT DISTINCT employee_ssn FROM Works_On WHERE project_id IN (101,102,103);
++--------------+
+| employee_ssn |
++--------------+
+| 123456789    |
+| 555443333    |
+| 987654321    |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT employee_ssn, first_name, last_name
+    -> FROM Employee
+    -> WHERE supervisor_ssn IS NULL;
++--------------+------------+-----------+
+| employee_ssn | first_name | last_name |
++--------------+------------+-----------+
+| 123456789    | Bhoumik    | Shah      |
++--------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT e.first_name, e.last_name, e.home_address
+    -> FROM Employee e
+    -> JOIN Department d ON e.dept_id = d.dept_id
+    -> WHERE d.dept_name = 'HR';
+Empty set (0.00 sec)
+
+mysql> SELECT e.first_name, e.last_name, e.home_address
+    -> FROM Employee e
+    -> JOIN Department d ON e.dept_id = d.dept_id
+    -> WHERE d.dept_name = 'Marketing';
++------------+-----------+--------------+
+| first_name | last_name | home_address |
++------------+-----------+--------------+
+| Bhoumik    | Shah      | Sinhgad Rd   |
++------------+-----------+--------------+
+1 row in set (0.00 sec)
+
+mysql> 
