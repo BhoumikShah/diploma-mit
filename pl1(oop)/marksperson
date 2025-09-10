@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+protected:
+    string name;
+    int age;
+public:
+    Person(string n, int a) : name(n), age(a) {}
+
+    virtual void calculate_result() {
+        cout << "Person: No result to calculate" << endl;
+    }
+
+    virtual ~Person() {}
+};
+
+class Student : public Person {
+protected:
+    int roll_number;
+    int subject1_marks;
+    int subject2_marks;
+public:
+    Student(string n, int a, int roll, int sub1, int sub2) 
+        : Person(n, a), roll_number(roll), subject1_marks(sub1), subject2_marks(sub2) {}
+
+    void calculate_result() override {
+        int total = subject1_marks + subject2_marks;
+        cout << "Student " << name << "'s total marks: " << total << endl;
+    }
+};
+
+class Sports {
+protected:
+    int sports_score;
+public:
+    Sports(int score) : sports_score(score) {}
+
+    virtual void calculate_result() {
+        cout << "Sports score: " << sports_score << endl;
+    }
+};
+
+class Result : public Student, public Sports {
+    int grace_marks;
+public:
+    Result(string n, int a, int roll, int sub1, int sub2, int sports_score, int grace) 
+        : Student(n, a, roll, sub1, sub2), Sports(sports_score), grace_marks(grace) {}
+
+    void calculate_result() override {
+        int total = subject1_marks + subject2_marks + grace_marks + sports_score;
+        cout << "Final Result of " << name << " (Roll No: " << roll_number << ") = " << total << endl;
+    }
+
+    void show_sports_score() {
+        Sports::calculate_result();
+    }
+};
+
+int main() {
+    Person* p1 = new Student("Alice", 20, 101, 80, 90);
+    Person* p2 = new Result("Bob", 21, 102, 70, 85, 15, 5);
+
+    // Call calculate_result via base class pointer (runtime polymorphism)
+    p1->calculate_result();  // Should call Student's calculate_result()
+    p2->calculate_result();  // Should call Result's calculate_result()
+
+    // To demonstrate Sports::calculate_result explicitly
+    Result* res = dynamic_cast<Result*>(p2);
+    if(res) {
+        res->show_sports_score();  // Calls Sports::calculate_result()
+    }
+
+    delete p1;
+    delete p2;
+    return 0;
+}
